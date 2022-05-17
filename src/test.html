@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>QRCode generator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <script type="text/javascript" src="qrcode.min.js"></script>
+</head>
+<body>
+<iframe width=0 height=0 frameborder=0 id="iframe" name = "i"></iframe>
+<p>Please type your input</p>
+<form action="demo-form.php" id="form1" target = "i">
+    Drug Name:<input type="text" id="dname" name="dname"><br>
+    Frequency (Per Day): <input type="text" id="fname" name="fname"><br>
+    Cautions: <input type="text" id="cname" name="cname"><br>
+    <button id='submit' >submit</button>
+</form>
+
+<div id="qrcode" style="width:200px; height:200px; margin-top:15px;" />
+<script type="text/javascript">
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width : 200,
+        height : 200
+    });
+
+    document.querySelector('#submit').onclick = async () => {
+        const input =document.getElementById('dname').value +"; "+document.getElementById('fname').value+"; "+document.getElementById('cname').value;
+        qrcode.makeCode(input);
+    }
+
+</script>
+</body>
